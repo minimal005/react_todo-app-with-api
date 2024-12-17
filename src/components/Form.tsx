@@ -29,16 +29,10 @@ export const Form: React.FC<Props> = ({
   const field = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (!isFocused) {
+    if (!isFocused || isDeleted) {
       field.current?.focus();
     }
-  }, [isFocused]);
-
-  useEffect(() => {
-    if (isDeleted) {
-      field.current?.focus();
-    }
-  }, [isDeleted]);
+  }, [isFocused, isDeleted]);
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
